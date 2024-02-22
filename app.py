@@ -73,32 +73,39 @@ player = {
 animation_cooldown = 150  # Milliseconds between frame changes
 last_animation_update = 0 
 
+def player_movement_logic(player_dic):
+    new_x = player_dic['x']
+    new_y = player_dic['y']
+
+    if event.key == pygame.K_LEFT:
+        new_x -= 1
+        direction = "left" 
+    elif event.key == pygame.K_RIGHT:
+        new_x += 1
+        direction = "right" 
+    elif event.key == pygame.K_UP:
+        new_y -= 1
+        direction = "up" 
+    elif event.key == pygame.K_DOWN:
+        new_y += 1
+        direction = "down" 
+    # Obstacle Collision Check    
+    tile_at_target_x = world_map[new_y][new_x] 
+    if tile_at_target_x not in ["trees", "rock"]:
+        # Boundary Check
+        if 0 <= new_x < columns and 0 <= new_y < rows:
+            player_dic['x'] = new_x
+            player_dic['y'] = new_y
+            player_dic['direction'] = direction 
+
 # Game Loop
 running = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            running = False
-        # Boundary Checks
-        if 0 <= player["x"] < columns and 0 <= player["y"] < rows: 
-            # Only allow movement if the new position is within map boundaries
-            # Tile-based Movement Logic
-            target_x = player["x"] * tile_size
-            target_y = player["y"] * tile_size
-             
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:                    
-                    player["x"] -= 1
-                    player["direction"] = "left" 
-                elif event.key == pygame.K_RIGHT:                    
-                    player["x"] += 1
-                    player["direction"] = "right"
-                elif event.key == pygame.K_UP:                    
-                    player["y"] -= 1
-                    player["direction"] = "up"
-                elif event.key == pygame.K_DOWN:                    
-                    player["y"] += 1
-                    player["direction"] = "down"
+            running = False                             
+        if event.type == pygame.KEYDOWN:
+            player_movement_logic(player)
 
     # Basic Rendering (adapt as needed)
     screen.fill((0, 0, 0))  # Black background
