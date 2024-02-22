@@ -1,6 +1,12 @@
 run app.py to get started 
 
-next steps is to work on detecting what tile I am on 
+Next: 
+--Expand world to have groups of tiles, 
+--Expand the set of tiles included, 
+--Make it so that the sprite doesnt spawn blocked
+--Make it so you can detect what tile the sprite is on
+--Add Metadata to the tile with a set of actions
+
 
 LLM Logic flow would be 
 - take an action
