@@ -1,5 +1,5 @@
 import pygame
-from world import make_the_world, grass_tile, grass_tile2, flower_tile, tree_tile
+from world import map_height_to_tiles, grass_tile, grass_tile2, flower_tile, tree_tile
 
 # Pygame Setup
 pygame.init()
@@ -12,7 +12,7 @@ tile_size = 16  # Example size
 animation_cooldown = 150  # Milliseconds between frame changes
 last_animation_update = 0 
 
-world_map = make_the_world(600, 600, 16)
+world_map = map_height_to_tiles(600, 600)
 
 # Game Loop
 running = True
