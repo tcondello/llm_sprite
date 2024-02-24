@@ -1,3 +1,6 @@
+
+import pygame
+import random
 import noise
 import numpy as np
 from tile_class import Tile
@@ -12,7 +15,7 @@ class WorldTiles(object):
         self.grass_tile = Tile(
             name="grass", 
              biomes=["forest", "flower_meadow"], 
-             generation_height=0.01, 
+             generation_height=0.2, 
              x=0, 
              y=8,
              tile_size=self.tile_size,
@@ -48,7 +51,7 @@ class WorldTiles(object):
         self.water_tile = Tile(
             name="water", 
              biomes=["pond"], 
-             generation_height=0.001, 
+             generation_height=0.1, 
              x=5, 
              y=2,
              tile_size=self.tile_size,
@@ -81,7 +84,7 @@ class GenerateHeightmap(WorldTiles):
      
 
 class MakeTheWorld(GenerateHeightmap):
-    def __init__(self, screen_width, screen_height, tile_size, tile_set_image, scale, octaves, persistence, lacunarity, frequency, amplitude, max_value):
+    def __init__(self):
         super(MakeTheWorld, self).__init__()
         self.tile_map = []
         for row in self.heightMap:
@@ -101,3 +104,6 @@ class MakeTheWorld(GenerateHeightmap):
                 else:
                     tile_row.append(self.tree_tile) 
             self.tile_map.append(tile_row)        
+
+world_map = MakeTheWorld().tile_map
+print(world_map)

@@ -1,8 +1,6 @@
 run app.py to get started 
 
 Next: 
---Expand world to have groups of tiles, 
-
 --Make it so that the sprite doesnt spawn blocked
 --Make it so you can detect what tile the sprite is on
 --Add Metadata to the tile with a set of actions
